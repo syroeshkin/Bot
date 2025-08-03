@@ -2,7 +2,7 @@ from flask import Flask, request
 import requests
 import os
 
-app = Flask(name)
+app = Flask(__name__)
 TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')  # Токен из Шага 1
 CHAT_ID = os.getenv('CHAT_ID')                # ID чата из Шага 2
 
@@ -27,5 +27,5 @@ def send_telegram(text):
     data = {"chat_id": CHAT_ID, "text": text}
     requests.post(url, json=data)
 
-if name == 'main':
+if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
